@@ -300,31 +300,46 @@ img { max-width: 100%; height: auto; }
 }
 
 .microblog_post {
-  display: flex;
-  gap: 12px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
 }
 .microblog_post:last-child { border-bottom: none; padding-bottom: 0; }
 
+.microblog_user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+/* conversation.js sets width/height attrs and an inline max-width on this
+   img itself, so !important is needed to make replies a consistent size */
 .microblog_avatar {
-  width: 40px;
-  height: 40px;
+  width: 28px !important;
+  height: 28px !important;
+  max-width: 28px !important;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
 }
 
+.microblog_fullname {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
 .microblog_text {
   color: var(--text);
-  margin-top: 0;
 }
-.microblog_text a { text-decoration: underline; text-decoration-color: var(--accent-tint); }
+.microblog_text p { margin: 0; }
+.microblog_text a { color: var(--accent); text-decoration: none; }
+.microblog_text a:hover { text-decoration: underline; }
 
 .microblog_time {
   color: var(--text-muted);
   font-size: 0.85rem;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .microblog_time a { color: inherit; }
 .microblog_time a:hover { color: var(--accent); }
