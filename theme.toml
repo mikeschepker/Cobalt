@@ -1,0 +1,11 @@
+name = "Cobalt"
+license = "MIT"
+licenselink = "https://github.com/"
+description = "A clean, modern Micro.blog theme in blue, with a centered avatar and site title, top navigation, and a simple footer."
+tags = ["blog", "responsive", "minimal", "blue", "modern"]
+features = ["blog", "responsive", "mobile", "dark-mode"]
+min_version = "0.90.0"
+
+[author]
+  name = "Your Name"
+  homepage = ""

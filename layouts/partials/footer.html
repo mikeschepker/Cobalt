@@ -1,0 +1,14 @@
+<footer id="site-footer">
+  <div class="wrap">
+    <a class="footer-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    <ul class="footer-links">
+      <li><a href="{{ "feed.xml" | absURL }}">RSS</a></li>
+      <li><a href="{{ "feed.json" | absURL }}">JSON Feed</a></li>
+      <li><a href="https://micro.blog/{{ .Site.Author.username }}" rel="me">Micro.blog</a></li>
+      {{ range .Site.Menus.footer }}
+        <li><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+    <p class="footer-copy">&copy; {{ now.Format "2006" }} {{ .Site.Author.name }}. Powered by <a href="https://micro.blog">Micro.blog</a>.</p>
+  </div>
+</footer>

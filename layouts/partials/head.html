@@ -1,0 +1,29 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ hugo.Generator }}
+  <meta name="theme-color" content="#0b1220">
+  <meta name="author" content="{{ .Site.Author.name }}">
+
+  <title>
+    {{- block "title" . -}}
+      {{- .Site.Title -}}
+      {{- if and .Title (ne .Title .Site.Title) }} &middot; {{ .Title }}{{ end -}}
+    {{- end -}}
+  </title>
+
+  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description | plainify }}{{ else }}{{ (.Description | default .Summary) | plainify }}{{ end }}">
+
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
+
+  {{ range .Site.Params.plugins_css }}
+    <link rel="stylesheet" href="{{ . }}">
+  {{ end }}
+
+  {{ partial "microblog_head.html" . }}
+
+  {{ with .Site.Params.cobalt_header_code }}
+    {{ . | safeHTML }}
+  {{ end }}
+</head>

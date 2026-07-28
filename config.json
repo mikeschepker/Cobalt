@@ -1,0 +1,36 @@
+{
+	"title": "Your Site Title",
+	"baseURL": "https://example.com/",
+	"languageCode": "en-us",
+	"paginate": 20,
+	"author": {
+		"name": "Your Name",
+		"avatar": "/images/avatar.jpg",
+		"username": "yourusername"
+	},
+	"params": {
+		"author": {
+			"name": "Your Name",
+			"avatar": "/images/avatar.jpg",
+			"username": "yourusername"
+		},
+		"description": "A short bio or tagline about you.",
+		"paginate_home": true,
+		"paginate_categories": false,
+		"include_conversation": true,
+		"theme_seconds": "0",
+		"cobalt_show_full_post": false,
+		"cobalt_excerpt_length": 280,
+		"cobalt_header_code": "",
+		"cobalt_footer_code": ""
+	},
+	"menu": {
+		"main": [
+			{ "name": "About", "url": "/about/", "weight": 1 },
+			{ "name": "Archive", "url": "/archive/", "weight": 2 }
+		],
+		"footer": [
+			{ "name": "Contact", "url": "/contact/", "weight": 1 }
+		]
+	}
+}

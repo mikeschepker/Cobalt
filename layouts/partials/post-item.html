@@ -1,0 +1,27 @@
+<li class="post-item h-entry">
+  <article>
+    {{ if .Title }}
+      <h2 class="post-title p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    {{ end }}
+
+    {{ $excerptLength := .Site.Params.cobalt_excerpt_length | default 280 }}
+    {{ $showFull := or (not .Title) .Site.Params.cobalt_show_full_post }}
+    {{ $isTruncated := and (not $showFull) (gt (len .Plain) $excerptLength) }}
+
+    <div class="post-content e-content">
+      {{ if $showFull }}
+        {{ .Content }}
+      {{ else }}
+        <p>{{ .Plain | truncate $excerptLength }}</p>
+      {{ end }}
+    </div>
+    <div class="post-footer">
+      <a class="u-url post-date" href="{{ .Permalink }}">
+        <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      </a>
+      {{ if $isTruncated }}
+        <a class="read-more" href="{{ .Permalink }}">Continue reading &rarr;</a>
+      {{ end }}
+    </div>
+  </article>
+</li>

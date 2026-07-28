@@ -1,0 +1,27 @@
+{
+	"version": "1.0",
+	"title": "Cobalt theme",
+	"description": "A clean, modern blue theme for Micro.blog.",
+	"fields": [
+		{
+			"field": "params.cobalt_show_full_post",
+			"label": "Show full post text on the home and archive pages (instead of an excerpt)",
+			"type": "boolean"
+		},
+		{
+			"field": "params.cobalt_excerpt_length",
+			"label": "Excerpt length, in characters (used when full post text is off)",
+			"type": "integer"
+		},
+		{
+			"field": "params.cobalt_header_code",
+			"label": "Custom code for <head> (e.g. analytics, meta tags)",
+			"type": "markdown"
+		},
+		{
+			"field": "params.cobalt_footer_code",
+			"label": "Custom code before </body> (e.g. tracking scripts)",
+			"type": "markdown"
+		}
+	]
+}
