@@ -16,7 +16,7 @@ A clean, modern [Micro.blog](https://micro.blog) theme in blue, dark by design (
    - Nav links → the "main" menu (Design → Navigation)
    - Extra footer links (optional) → a "footer" menu
 
-`config.json` and `theme.toml` in this repo are only used for local Hugo development/preview below — Micro.blog manages your actual site settings separately, so you don't need to edit them for a live blog.
+**Important:** Micro.blog merges this repo's `config.json` directly into your live site's config, and its values take precedence over your real dashboard settings for anything under `title`, `author`, `params.description`, or `menu`. That's why `config.json` here deliberately omits all of those — don't add them back (not even as placeholders), or you'll overwrite your real title, tagline, and author info with whatever you typed in this file. `config.json` should only ever contain this theme's own custom settings (the `cobalt_*` params below), never anything Micro.blog's dashboard already manages.
 
 ## Theme settings
 
@@ -31,11 +31,22 @@ Both code fields are inserted unescaped (`safeHTML`), so only paste code you tru
 
 ## Local development
 
-```
-hugo server
+Since `config.json` intentionally has no title/author/description (see above), create an untracked `config.dev.json` alongside it for local preview only:
+
+```json
+{
+	"title": "Your Site Title",
+	"author": { "name": "Your Name", "avatar": "/images/avatar.jpg", "username": "yourusername" },
+	"params": { "author": { "name": "Your Name", "avatar": "/images/avatar.jpg", "username": "yourusername" }, "description": "A short bio or tagline about you." },
+	"menu": { "main": [ { "name": "About", "url": "/about/", "weight": 1 } ] }
+}
 ```
 
-Edit `config.json` with your own title, avatar path, and description to preview locally. Static avatar images can go in `static/images/`.
+Then run Hugo with both configs merged (never commit `config.dev.json`):
+
+```
+hugo server --config config.json,config.dev.json
+```
 
 ## Structure
 
