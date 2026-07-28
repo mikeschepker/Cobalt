@@ -56,6 +56,7 @@ hugo server --config config.json,config.dev.json
 - `layouts/partials/footer.html` — RSS/JSON feed links, copyright
 - `plugin.json` — the theme settings form (excerpt vs. full post, custom head/footer code)
 - `layouts/index.html`, `layouts/_default/list.html` — post lists (home, categories, tags)
+- `layouts/_default/list.archivehtml.html` — the `/archive/` page: a full unpaginated post history plus a category-jump dropdown, overriding Micro.blog's unstyled built-in archive template
 - `layouts/post/single.html`, `layouts/_default/single.html` — individual posts and pages
 - `static/css/style.css` — all styling; dark-only, no light theme
 

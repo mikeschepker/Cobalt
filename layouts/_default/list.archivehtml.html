@@ -1,0 +1,30 @@
+{{ define "main" }}
+  <header class="list-header">
+    <h1>Archive</h1>
+  </header>
+
+  {{ $categories := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
+  {{ if gt (len $categories) 0 }}
+    <div class="archive-categories">
+      <label for="archive-category-select">Browse by category</label>
+      <select id="archive-category-select" onchange="if (this.value) { window.location.href = this.value; }">
+        <option value="">All posts</option>
+        {{ range $categories }}
+          <option value="{{ .Permalink }}">{{ .Title }} ({{ len .Pages }})</option>
+        {{ end }}
+      </select>
+    </div>
+  {{ end }}
+
+  <div class="archive-list h-feed">
+    {{ range where .Site.Pages "Type" "post" }}
+      <p class="archive-item h-entry">
+        <a href="{{ .Permalink }}" class="u-url archive-date">
+          <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "2006-01-02" }}</time>
+        </a>
+        {{ if .Title }}<span class="p-name archive-title">{{ .Title }}</span>{{ end }}
+        <span class="p-summary archive-summary">{{ .Summary | plainify | htmlUnescape | truncate 100 }}</span>
+      </p>
+    {{ end }}
+  </div>
+{{ end }}
