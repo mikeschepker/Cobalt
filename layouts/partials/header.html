@@ -4,12 +4,7 @@
       {{ with .Site.Author.avatar }}
         <img class="u-photo avatar" src="{{ . }}" width="36" height="36" alt="{{ $.Site.Author.name }}">
       {{ end }}
-      <span class="site-brand-text">
-        <span class="site-title p-name">{{ .Site.Title }}</span>
-        {{ with .Site.Params.description }}
-          <span class="site-tagline p-role">{{ . | safeHTML }}</span>
-        {{ end }}
-      </span>
+      <span class="site-title p-name">{{ .Site.Title }}</span>
     </a>
     {{ partial "navigation.html" . }}
   </div>
