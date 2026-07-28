@@ -77,8 +77,8 @@ img { max-width: 100%; height: auto; }
 .site-brand:hover { text-decoration: none; }
 
 .site-brand .avatar {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--border);
@@ -86,7 +86,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .site-title {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -273,29 +273,49 @@ img { max-width: 100%; height: auto; }
 
 .single-content { font-size: 1.05rem; }
 
-.post-author {
-  display: flex;
+/* Replies (injected by micro.blog/conversation.js) */
+
+.post-conversation {
   margin-top: 40px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
 }
-.post-author a {
+
+.microblog_conversation {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text);
+  flex-direction: column;
+  gap: 20px;
 }
-.post-author .avatar {
+
+.microblog_post {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.microblog_post:last-child { border-bottom: none; padding-bottom: 0; }
+
+.microblog_avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
-.post-author-text { display: flex; flex-direction: column; }
-.post-author .handle {
+
+.microblog_text {
+  color: var(--text);
+  margin-top: 0;
+}
+.microblog_text a { text-decoration: underline; text-decoration-color: var(--accent-tint); }
+
+.microblog_time {
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }
+.microblog_time a { color: inherit; }
+.microblog_time a:hover { color: var(--accent); }
 
 /* Typography inside content */
 

@@ -17,17 +17,9 @@
   </div>
 
   {{ if .Site.Params.include_conversation }}
-    <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
+    <div class="post-conversation">
+      <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
+    </div>
   {{ end }}
-
-  <footer class="post-author h-card p-author">
-    <a class="u-url" href="{{ .Site.BaseURL }}">
-      {{ with .Site.Author.avatar }}<img class="u-photo avatar" src="{{ . }}" width="48" height="48" alt="">{{ end }}
-      <span class="post-author-text">
-        <span class="p-name">{{ .Site.Author.name }}</span>
-        <span class="handle">@{{ .Site.Author.username }}</span>
-      </span>
-    </a>
-  </footer>
 </article>
 {{ end }}
