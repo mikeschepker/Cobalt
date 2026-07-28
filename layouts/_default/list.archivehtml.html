@@ -3,14 +3,14 @@
     <h1>Archive</h1>
   </header>
 
-  {{ $categories := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
+  {{ $categories := .Site.Taxonomies.categories }}
   {{ if gt (len $categories) 0 }}
     <div class="archive-categories">
       <label for="archive-category-select">Browse by category</label>
       <select id="archive-category-select" onchange="if (this.value) { window.location.href = this.value; }">
         <option value="">All posts</option>
-        {{ range $categories }}
-          <option value="{{ .Permalink }}">{{ .Title }} ({{ len .Pages }})</option>
+        {{ range $name, $weightedPages := $categories }}
+          <option value="{{ "categories/" | relLangURL }}{{ $name }}/">{{ $name | humanize }} ({{ len $weightedPages }})</option>
         {{ end }}
       </select>
     </div>
