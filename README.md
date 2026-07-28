@@ -9,14 +9,15 @@ A clean, modern [Micro.blog](https://micro.blog) theme in blue, dark by design (
 1. Push this repository to a public GitHub repo (e.g. `github.com/yourname/cobalt-theme`).
 2. In Micro.blog, go to **Design → Edit Custom Themes → New Theme**.
 3. Point it at your GitHub repo and save. Micro.blog will pull in `layouts/` and `static/` from this repo.
-4. Set your avatar, site title, tagline/description, and navigation links from the normal Micro.blog **Design** and **Preferences** screens — the theme reads all of that automatically:
+4. Set your avatar, site title, and navigation links from the normal Micro.blog **Design** and **Preferences** screens — the theme reads all of that automatically:
    - Avatar & name → `.Site.Author.avatar` / `.Site.Author.name`
    - Site title → `.Site.Title`
-   - Tagline/bio → `.Site.Params.description`
    - Nav links → the "main" menu (Design → Navigation)
    - Extra footer links (optional) → a "footer" menu
 
-**Important:** Micro.blog merges this repo's `config.json` directly into your live site's config, and its values take precedence over your real dashboard settings for anything under `title`, `author`, `params.description`, or `menu`. That's why `config.json` here deliberately omits all of those — don't add them back (not even as placeholders), or you'll overwrite your real title, tagline, and author info with whatever you typed in this file. `config.json` should only ever contain this theme's own custom settings (the `cobalt_*` params below), never anything Micro.blog's dashboard already manages.
+The header intentionally has no tagline/bio line — just the avatar, title, and nav.
+
+**Important:** Micro.blog merges this repo's `config.json` directly into your live site's config, and its values take precedence over your real dashboard settings for anything under `title`, `author`, `params.description`, or `menu`. That's why `config.json` here deliberately omits all of those — don't add them back (not even as placeholders), or you'll overwrite your real title and author info with whatever you typed in this file. `config.json` should only ever contain this theme's own custom settings (the `cobalt_*` params below), never anything Micro.blog's dashboard already manages.
 
 ## Theme settings
 
@@ -37,7 +38,7 @@ Since `config.json` intentionally has no title/author/description (see above), c
 {
 	"title": "Your Site Title",
 	"author": { "name": "Your Name", "avatar": "/images/avatar.jpg", "username": "yourusername" },
-	"params": { "author": { "name": "Your Name", "avatar": "/images/avatar.jpg", "username": "yourusername" }, "description": "A short bio or tagline about you." },
+	"params": { "author": { "name": "Your Name", "avatar": "/images/avatar.jpg", "username": "yourusername" }, "description": "Used only for the <meta name=\"description\"> tag, not shown in the header." },
 	"menu": { "main": [ { "name": "About", "url": "/about/", "weight": 1 } ] }
 }
 ```
@@ -51,7 +52,7 @@ hugo server --config config.json,config.dev.json
 ## Structure
 
 - `layouts/_default/baseof.html` — base page shell (head, header, footer)
-- `layouts/partials/header.html` + `navigation.html` — compact single-row header: avatar/title/tagline on the left, nav on the right
+- `layouts/partials/header.html` + `navigation.html` — compact single-row header: avatar/title on the left, nav on the right
 - `screenshot/home.png` — theme screenshot shown above, referenced from this README for the Micro.blog theme directory
 - `layouts/partials/footer.html` — RSS/JSON feed links, copyright
 - `plugin.json` — the theme settings form (excerpt vs. full post, custom head/footer code)
