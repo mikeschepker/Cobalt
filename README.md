@@ -30,6 +30,17 @@ The header intentionally has no tagline/bio line — just the avatar, title, and
 
 Both code fields are inserted unescaped (`safeHTML`), so only paste code you trust.
 
+## SEO
+
+`layouts/partials/seo.html` (included from `head.html` on every page) adds:
+
+- A self-referencing canonical link, skipped automatically on pages (like `/archive/`) where Micro.blog/Hugo already emits its own `rel="canonical"`, to avoid conflicting duplicates
+- A `<meta name="description">` truncated to 160 characters, sourced from the page's own description/summary (or the site description on the home page)
+- Open Graph and Twitter Card tags (title, description, url, type, image — falling back to your avatar if a post has no `Params.image`)
+- JSON-LD `BlogPosting` structured data on individual posts (headline, dates, author, url, image)
+
+The home page also gets a visually-hidden `<h1>` (the site title) for heading-hierarchy correctness, since list and single pages already have a visible one.
+
 ## Local development
 
 Since `config.json` intentionally has no title/author/description (see above), create an untracked `config.dev.json` alongside it for local preview only:
@@ -56,6 +67,7 @@ hugo server --config config.json,config.dev.json
 - `screenshot/home.png` — theme screenshot shown above, referenced from this README for the Micro.blog theme directory
 - `layouts/partials/footer.html` — RSS/JSON feed links, copyright
 - `plugin.json` — the theme settings form (excerpt vs. full post, custom head/footer code)
+- `layouts/partials/seo.html` — canonical link, meta description, Open Graph/Twitter Card tags, JSON-LD for posts
 - `layouts/index.html`, `layouts/_default/list.html` — post lists (home, categories, tags)
 - `layouts/_default/list.archivehtml.html` — the `/archive/` page: a full unpaginated post history plus a category-jump dropdown, overriding Micro.blog's unstyled built-in archive template
 - `layouts/post/single.html`, `layouts/_default/single.html` — individual posts and pages

@@ -13,7 +13,7 @@
     {{- end -}}
   </title>
 
-  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description | plainify }}{{ else }}{{ (.Description | default .Summary) | plainify }}{{ end }}">
+  {{ partial "seo.html" . }}
 
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
 
