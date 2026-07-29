@@ -1,4 +1,5 @@
 {
+	"paginate": 20,
 	"params": {
 		"paginate_home": true,
 		"paginate_categories": false,
@@ -8,6 +9,7 @@
 		"cobalt_excerpt_length": 280,
 		"cobalt_show_reading_time": true,
 		"cobalt_show_categories": true,
+		"cobalt_categories_long_posts_only": false,
 		"cobalt_header_code": "",
 		"cobalt_footer_code": ""
 	}

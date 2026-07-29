@@ -14,6 +14,11 @@
 			"type": "integer"
 		},
 		{
+			"field": "paginate",
+			"label": "Number of posts to display per page",
+			"type": "integer"
+		},
+		{
 			"field": "params.cobalt_show_reading_time",
 			"label": "Show estimated reading time on posts",
 			"type": "boolean"
@@ -21,6 +26,11 @@
 		{
 			"field": "params.cobalt_show_categories",
 			"label": "Show category pills on posts",
+			"type": "boolean"
+		},
+		{
+			"field": "params.cobalt_categories_long_posts_only",
+			"label": "Only show category pills on long posts (unchecked shows them on all posts)",
 			"type": "boolean"
 		},
 		{

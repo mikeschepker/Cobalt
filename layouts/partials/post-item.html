@@ -28,7 +28,7 @@
         <span class="post-readtime">{{ .ReadingTime }} min read</span>
       {{ end }}
     </div>
-    {{ if ne .Site.Params.cobalt_show_categories false }}
+    {{ if and (ne .Site.Params.cobalt_show_categories false) (or (not .Site.Params.cobalt_categories_long_posts_only) (gt .ReadingTime 1)) }}
       {{ with .GetTerms "categories" }}
         <div class="post-categories">
           {{ range . }}

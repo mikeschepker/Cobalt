@@ -21,16 +21,23 @@ The header intentionally has no tagline/bio line — just the avatar, title, and
 
 ## Theme settings
 
-`plugin.json` declares a settings form that appears on the theme's page in Micro.blog's dashboard (Design → your theme → Settings):
+`plugin.json` declares a settings form that appears on the theme's page in Micro.blog's dashboard (Design → your theme → Settings), grouped in the order they naturally affect a post — how much text shows, how many posts per page, then the reading-time/category extras, then custom code:
 
+**Post content**
 - **Show full post text on the home and archive pages** — a checkbox. Off by default, which shows an excerpt instead. Untitled, short microblog-style posts always show in full either way, since there's nothing to excerpt.
 - **Excerpt length, in characters** — only used when the checkbox above is off. Defaults to 280 if left blank.
+- **Number of posts to display per page** — maps to Hugo's site-wide `paginate` setting (the same field Micro.blog's own official "Paginate settings" plugin uses). Defaults to 20.
+
+**Reading time & categories**
 - **Show estimated reading time on posts** — on by default. Uncheck to hide the "N min read" next to the date.
 - **Show category pills on posts** — on by default. Uncheck to hide the category pills under each post.
+- **Only show category pills on long posts** — off by default (pills show on every post). When checked, pills only appear on posts over a minute's reading time; short microblog-style posts won't show them.
+
+**Custom code**
 - **Custom code for `<head>`** — raw HTML/JS pasted here is inserted right before `</head>` on every page. Use for analytics snippets, extra meta tags, etc.
 - **Custom code before `</body>`** — raw HTML/JS inserted right before the closing `</body>` tag. Use for tracking scripts that should load late.
 
-Both code fields are inserted unescaped (`safeHTML`), so only paste code you trust. The reading-time and category checkboxes default to *on* even before you've touched the settings page — the templates only hide them when explicitly set to off, so an unset/missing value still shows them.
+Both code fields are inserted unescaped (`safeHTML`), so only paste code you trust. The reading-time and category checkboxes default to *on* even before you've touched the settings page — the templates only hide them when explicitly set to off, so an unset/missing value still shows them. The "long posts only" checkbox works the other way (default off), matching how a fresh install behaves today.
 
 ## SEO
 
