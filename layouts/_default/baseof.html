@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ or .Site.LanguageCode "en" }}">
 {{ partial "head.html" . }}
-<body>
+<body id="top">
   {{ partial "header.html" . }}
   <main id="main">
     <div class="wrap">
@@ -10,6 +10,20 @@
   </main>
   {{ partial "footer.html" . }}
   {{ partial "custom_footer.html" . }}
+
+  <a href="#top" id="back-to-top" class="back-to-top" aria-label="Back to top">&uarr;</a>
+  <script>
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      var toggle = function () {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      };
+      window.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+    })();
+  </script>
+
   {{ range .Site.Params.plugins_js }}
     <script src="{{ . }}"></script>
   {{ end }}
