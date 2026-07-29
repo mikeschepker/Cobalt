@@ -216,6 +216,8 @@ img { max-width: 100%; height: auto; }
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .archive-date:hover { color: var(--accent); }
 
