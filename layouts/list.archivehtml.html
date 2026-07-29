@@ -4,21 +4,40 @@
   </header>
 
   {{ $categories := .Site.Taxonomies.categories }}
-  {{ if gt (len $categories) 0 }}
+  {{ $posts := (where .Site.Pages "Type" "post").ByDate.Reverse }}
+
+  {{ if or (gt (len $categories) 0) (gt (len $posts) 0) }}
     <div class="archive-categories">
-      <label for="archive-category-select">Browse by category</label>
-      <select id="archive-category-select" onchange="if (this.value) { window.location.href = this.value; }">
-        <option value="">All posts</option>
-        {{ range $name, $weightedPages := $categories }}
-          <option value="{{ "categories/" | relLangURL }}{{ $name }}/">{{ $name | humanize }} ({{ len $weightedPages }})</option>
-        {{ end }}
-      </select>
+      {{ if gt (len $categories) 0 }}
+        <label for="archive-category-select">Browse by category</label>
+        <select id="archive-category-select" onchange="if (this.value) { window.location.href = this.value; }">
+          <option value="">All posts</option>
+          {{ range $name, $weightedPages := $categories }}
+            <option value="{{ "categories/" | relLangURL }}{{ $name }}/">{{ $name | humanize }} ({{ len $weightedPages }})</option>
+          {{ end }}
+        </select>
+      {{ end }}
+
+      {{ if gt (len $posts) 0 }}
+        <label for="archive-year-select">Browse by year</label>
+        <select id="archive-year-select">
+          <option value="">All years</option>
+          {{ $lastYear := "" }}
+          {{ range $posts }}
+            {{ $year := .Date.Format "2006" }}
+            {{ if ne $year $lastYear }}
+              <option value="{{ $year }}">{{ $year }}</option>
+              {{ $lastYear = $year }}
+            {{ end }}
+          {{ end }}
+        </select>
+      {{ end }}
     </div>
   {{ end }}
 
   <div class="archive-list h-feed">
-    {{ range where .Site.Pages "Type" "post" }}
-      <p class="archive-item h-entry">
+    {{ range $posts }}
+      <p class="archive-item h-entry" data-year="{{ .Date.Format "2006" }}">
         <a href="{{ .Permalink }}" class="u-url archive-date">
           <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "2006-01-02" }}</time>
         </a>
@@ -27,4 +46,18 @@
       </p>
     {{ end }}
   </div>
+
+  <script>
+    (function () {
+      var yearSelect = document.getElementById('archive-year-select');
+      if (!yearSelect) return;
+      yearSelect.addEventListener('change', function () {
+        var year = yearSelect.value;
+        var items = document.querySelectorAll('.archive-item');
+        for (var i = 0; i < items.length; i++) {
+          items[i].style.display = (!year || items[i].getAttribute('data-year') === year) ? '' : 'none';
+        }
+      });
+    })();
+  </script>
 {{ end }}
