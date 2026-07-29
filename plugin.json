@@ -14,6 +14,16 @@
 			"type": "integer"
 		},
 		{
+			"field": "params.cobalt_show_reading_time",
+			"label": "Show estimated reading time on posts",
+			"type": "boolean"
+		},
+		{
+			"field": "params.cobalt_show_categories",
+			"label": "Show category pills on posts",
+			"type": "boolean"
+		},
+		{
 			"field": "params.cobalt_header_code",
 			"label": "Custom code for <head> (e.g. analytics, meta tags)",
 			"type": "markdown"

@@ -25,10 +25,12 @@ The header intentionally has no tagline/bio line — just the avatar, title, and
 
 - **Show full post text on the home and archive pages** — a checkbox. Off by default, which shows an excerpt instead. Untitled, short microblog-style posts always show in full either way, since there's nothing to excerpt.
 - **Excerpt length, in characters** — only used when the checkbox above is off. Defaults to 280 if left blank.
+- **Show estimated reading time on posts** — on by default. Uncheck to hide the "N min read" next to the date.
+- **Show category pills on posts** — on by default. Uncheck to hide the category pills under each post.
 - **Custom code for `<head>`** — raw HTML/JS pasted here is inserted right before `</head>` on every page. Use for analytics snippets, extra meta tags, etc.
 - **Custom code before `</body>`** — raw HTML/JS inserted right before the closing `</body>` tag. Use for tracking scripts that should load late.
 
-Both code fields are inserted unescaped (`safeHTML`), so only paste code you trust.
+Both code fields are inserted unescaped (`safeHTML`), so only paste code you trust. The reading-time and category checkboxes default to *on* even before you've touched the settings page — the templates only hide them when explicitly set to off, so an unset/missing value still shows them.
 
 ## SEO
 
@@ -49,7 +51,7 @@ The home page also gets a visually-hidden `<h1>` (the site title) for heading-hi
 - **Photos** (`layouts/list.photoshtml.html`) — a responsive grid of every post that has `Params.photos` set, each thumbnail linking to its post, overriding Micro.blog's unstyled built-in photos template the same way the archive page does.
 - **Search** — Micro.blog's search page embeds its own `<form>`/`.field`/`#list_results` markup and inline styles directly in the page content, so this theme overrides them with more specific selectors scoped under `.single-content` in `static/css/style.css`.
 - **Replies** — posts you make of `Type: "reply"` intentionally don't appear in the home feed, archive, or category pages; that's Micro.blog's own documented behavior (they get their own `/replies` page), not something this theme filters out.
-- **Category pills + reading time** — each post in a list (and the post itself on its own page) shows its categories as small pills (via `.GetTerms "categories"`, so it works regardless of how your front matter names the taxonomy field) and a "N min read" estimate for posts over a minute, next to the date.
+- **Category pills + reading time** — each post in a list (and the post itself on its own page) shows its categories as small pills (via `.GetTerms "categories"`, so it works regardless of how your front matter names the taxonomy field) and a "N min read" estimate for posts over a minute, next to the date. Both are toggleable from the theme settings (see above).
 - **Accessibility** — a "Skip to content" link (visible on keyboard focus) jumps past the header/nav straight to `<main>`, and links/buttons/inputs get a visible accent-colored focus ring for keyboard navigation.
 - **Print styles** — printing a page hides the header, nav, footer, back-to-top button, and reply thread, and switches to black-on-white for readability on paper.
 

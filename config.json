@@ -6,6 +6,8 @@
 		"theme_seconds": "0",
 		"cobalt_show_full_post": false,
 		"cobalt_excerpt_length": 280,
+		"cobalt_show_reading_time": true,
+		"cobalt_show_categories": true,
 		"cobalt_header_code": "",
 		"cobalt_footer_code": ""
 	}
