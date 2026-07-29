@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <header class="single-header">
+    <h1 class="p-name">Photos</h1>
+  </header>
+
+  <div class="photo-grid">
+    {{ range where .Site.Pages ".Params.photos" "!=" nil }}
+      {{ $post := . }}
+      <a href="{{ .Permalink }}" class="photo-grid-item">
+        {{ range first 1 .Params.photos }}
+          <img src="{{ . }}" loading="lazy" alt="{{ if $post.Plain }}{{ $post.Plain | truncate 100 }}{{ else }}Photo from {{ $post.Date.Format "January 2, 2006" }}{{ end }}">
+        {{ end }}
+      </a>
+    {{ end }}
+  </div>
+{{ end }}

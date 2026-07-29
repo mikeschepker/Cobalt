@@ -44,6 +44,15 @@ All of these fall back to your avatar for the image if a post has no `Params.ima
 
 The home page also gets a visually-hidden `<h1>` (the site title) for heading-hierarchy correctness, since list and single pages already have a visible one.
 
+## Other pages and features
+
+- **Photos** (`layouts/list.photoshtml.html`) — a responsive grid of every post that has `Params.photos` set, each thumbnail linking to its post, overriding Micro.blog's unstyled built-in photos template the same way the archive page does.
+- **Search** — Micro.blog's search page embeds its own `<form>`/`.field`/`#list_results` markup and inline styles directly in the page content, so this theme overrides them with more specific selectors scoped under `.single-content` in `static/css/style.css`.
+- **Replies** — posts you make of `Type: "reply"` intentionally don't appear in the home feed, archive, or category pages; that's Micro.blog's own documented behavior (they get their own `/replies` page), not something this theme filters out.
+- **Category pills + reading time** — each post in a list (and the post itself on its own page) shows its categories as small pills (via `.GetTerms "categories"`, so it works regardless of how your front matter names the taxonomy field) and a "N min read" estimate for posts over a minute, next to the date.
+- **Accessibility** — a "Skip to content" link (visible on keyboard focus) jumps past the header/nav straight to `<main>`, and links/buttons/inputs get a visible accent-colored focus ring for keyboard navigation.
+- **Print styles** — printing a page hides the header, nav, footer, back-to-top button, and reply thread, and switches to black-on-white for readability on paper.
+
 ## Local development
 
 Since `config.json` intentionally has no title/author/description (see above), create an untracked `config.dev.json` alongside it for local preview only:
@@ -74,6 +83,7 @@ hugo server --config config.json,config.dev.json
 - `layouts/partials/opengraph.html` — Open Graph tags, called from `seo.html`
 - `layouts/index.html`, `layouts/_default/list.html` — post lists (home, categories, tags)
 - `layouts/list.archivehtml.html` — the `/archive/` page: a full unpaginated post history plus category and year filters, overriding Micro.blog's unstyled built-in archive template
+- `layouts/list.photoshtml.html` — the `/photos/` page: a responsive grid of posts with photos
 - `layouts/post/single.html`, `layouts/_default/single.html` — individual posts and pages
 - `static/css/style.css` — all styling; dark-only, no light theme
 

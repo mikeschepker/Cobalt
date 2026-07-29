@@ -19,9 +19,19 @@
       <a class="u-url post-date" href="{{ .Permalink }}">
         <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
       </a>
+      {{ if and .Title (gt .ReadingTime 1) }}
+        <span class="post-readtime">{{ .ReadingTime }} min read</span>
+      {{ end }}
       {{ if $isTruncated }}
         <a class="read-more" href="{{ .Permalink }}">Continue reading &rarr;</a>
       {{ end }}
     </div>
+    {{ with .GetTerms "categories" }}
+      <div class="post-categories">
+        {{ range . }}
+          <a class="post-category p-category" href="{{ .Permalink }}">{{ .Title }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
   </article>
 </li>

@@ -32,6 +32,32 @@
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 12px;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  text-decoration: none;
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 html { -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
@@ -235,6 +261,36 @@ img { max-width: 100%; height: auto; }
   min-width: 0;
 }
 
+/* Photos */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.photo-grid-item {
+  display: block;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.photo-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.photo-grid-item:hover img { transform: scale(1.05); }
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-grid-item img { transition: none; }
+}
+
 /* Post list */
 
 #post-list {
@@ -280,6 +336,30 @@ img { max-width: 100%; height: auto; }
   font-weight: 600;
 }
 
+.post-readtime {
+  color: var(--text-muted);
+}
+
+.post-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.post-category {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--accent-tint);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.post-category:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
 /* Single post / page */
 
 .single-header { margin-bottom: 24px; }
@@ -296,6 +376,53 @@ img { max-width: 100%; height: auto; }
 }
 
 .single-content { font-size: 1.05rem; }
+
+/* Micro.blog's search page embeds its own <form>/.field/#list_results markup
+   and styles directly in page content; these selectors are scoped under
+   .single-content so they win on specificity over the page's own rules. */
+
+.single-content form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.single-content .field {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+.single-content .field:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.single-content #list_loading {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px 0;
+}
+
+.single-content #list_results p {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+.single-content #list_results p:last-child { border-bottom: none; }
+.single-content #list_results a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-right: 4px;
+}
+.single-content #list_results a:hover { color: var(--accent); }
+.single-content #list_results b { color: var(--title-accent); }
 
 /* Replies (injected by micro.blog/conversation.js) */
 
@@ -559,4 +686,19 @@ img { max-width: 100%; height: auto; }
   #site-header .wrap { justify-content: flex-start; }
   .site-nav { width: 100%; }
   .single-header h1 { font-size: 1.5rem; }
+}
+
+/* Print */
+
+@media print {
+  body { background: #fff; color: #111; }
+  #site-header, #site-footer, .back-to-top, .skip-link,
+  .site-nav, .archive-categories, .post-footer .read-more,
+  .post-conversation {
+    display: none;
+  }
+  #site-header { position: static; }
+  .single-header h1, .post-title a { color: #111; }
+  a { color: #111; text-decoration: underline; }
+  .wrap { max-width: 100%; padding: 0; }
 }
