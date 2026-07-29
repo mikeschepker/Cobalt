@@ -501,6 +501,14 @@ img { max-width: 100%; height: auto; }
 }
 .footer-copy a { color: var(--text-muted); text-decoration: underline; }
 
+.footer-credit {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+.footer-credit a { color: var(--text-muted); text-decoration: underline; }
+.footer-credit a:hover { color: var(--accent); }
+
 /* Responsive */
 
 @media (max-width: 560px) {
