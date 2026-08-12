@@ -31,6 +31,37 @@
   {{ if .Site.Params.include_conversation }}
     <div class="post-conversation">
       <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
+      <script>
+        (function () {
+          var container = document.currentScript.closest('.post-conversation');
+          if (!container) return;
+
+          function to12Hour(match, hh, mm) {
+            var h = parseInt(hh, 10);
+            var period = h >= 12 ? 'PM' : 'AM';
+            var h12 = h % 12 || 12;
+            return h12 + ':' + mm + ' ' + period;
+          }
+
+          function convertOne(a) {
+            if (a.dataset.timeConverted) return;
+            a.textContent = a.textContent.replace(/\b([01]?\d|2[0-3]):([0-5]\d)\b/, to12Hour);
+            a.dataset.timeConverted = 'true';
+          }
+
+          function convert(node) {
+            if (!(node instanceof Element)) return;
+            if (node.matches('.microblog_time a')) convertOne(node);
+            node.querySelectorAll('.microblog_time a').forEach(convertOne);
+          }
+
+          new MutationObserver(function (mutations) {
+            mutations.forEach(function (m) {
+              m.addedNodes.forEach(convert);
+            });
+          }).observe(container, { childList: true, subtree: true });
+        })();
+      </script>
     </div>
   {{ end }}
 </article>
